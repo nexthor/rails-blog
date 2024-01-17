@@ -2,26 +2,14 @@
     <div class="offset-md-3 col-12 col-md-6">
         <div class="border-bottom d-flex justify-content-between align-items-center mb-4">
             <h1>Articles</h1>
-            <%= link_to "Create new Article", article_new_path, class: "btn btn-primary" %>
+            <%= link_to "Create new Article", new_article_path, class: "btn btn-primary" %>
         </div>
         
 
         <% @articles.each do |article| %>
-            <div class="d-flex justify-content-between align-items-center">
-                <%= link_to article.title, article_path(article.id), class: "fs-4" %>
-                <div>
-                    <small>[<%= link_to "Edit", article_edit_path(article.id) %>]</small>  
-                    <small>[<%= link_to "Delete", article_delete_path(article.id), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %>]</small>          
-                </div>
-            </div>
-            <p><%= article.content %></p>
-            <br />
-            <br />
-            <p><%= link_to "More info", article_path(article.id) %></p>
-            <hr />
+        <%= render "article", article: article %>
+        <p><%= link_to "More info", article_path(article.id) %></p>
+        <hr />
         <% end %>
     </div>
 </div>
